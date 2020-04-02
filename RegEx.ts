@@ -46,13 +46,15 @@ class RegEx {
   }
 
   private getContent(contentString: string): string {
-    const content = contentString || this.getInputContent();
-
-    if (this.flags.includes(Flag.FILE)) {
-      return this.getFileContent(content);
+    if (!contentString) {
+      return this.getInputContent();
     }
 
-    return content;
+    if (this.flags.includes(Flag.FILE)) {
+      return this.getFileContent(contentString);
+    }
+
+    return contentString;
   }
 
   private getInputContent(): string {
